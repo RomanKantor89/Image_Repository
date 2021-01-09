@@ -11,20 +11,42 @@ class SearchService {
     static var shared = SearchService()
     // array of image data to temporarily store results of downloaded images from the web
     var imageData = [Data]()
-    // private information stored in enviromental variables
-    var API_KEY = ""
-    var CX = ""
+    
+    // private information stored in info.plist 
+    // retrieve API_KEY from Info.plist
+    private var API_KEY: String {
+      get {
+        // 1
+        guard let filePath = Bundle.main.path(forResource: "Info", ofType: "plist") else {
+          fatalError("Couldn't find file 'Info.plist'.")
+        }
+        // 2
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "Google_API_KEY") as? String else {
+          fatalError("Couldn't find key 'Google_API_KEY' in 'Info.plist'.")
+        }
+        return value
+      }
+    }
+    
+    // retrieve CX ID from Info.plist
+    private var CX: String {
+      get {
+        // 1
+        guard let filePath = Bundle.main.path(forResource: "Info", ofType: "plist") else {
+          fatalError("Couldn't find file 'Info.plist'.")
+        }
+        // 2
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "Google_CX") as? String else {
+          fatalError("Couldn't find key 'Google_CX' in 'Info.plist'.")
+        }
+        return value
+      }
+    }
     
     // API to fetch google image links for a specific word or phrase
     func fetchGoogleResults(_ question :String, _ start: Int, handler : @escaping ()->Void) {
-        
-        // get enviromental variables
-        if let val = ProcessInfo.processInfo.environment["Google_API_Key"] {
-            API_KEY = val
-        }
-        if let val = ProcessInfo.processInfo.environment["Google_CX"] {
-            CX = val
-        }
         
         guard let myUrl = URL(string: "https://www.googleapis.com/customsearch/v1?key=\(API_KEY)&cx=\(CX)&searchType=image&start=\(start)&q=\(question)") else {return}
         URLSession.shared.dataTask(with: myUrl) { (data, request, error) in
