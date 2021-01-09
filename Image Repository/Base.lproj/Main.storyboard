@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KvW-yy-hUg">
-                                <rect key="frame" x="10" y="178" width="311" height="594"/>
+                                <rect key="frame" x="10" y="178" width="394" height="594"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="0.0" id="ehm-u5-6fZ">
                                     <size key="itemSize" width="110" height="90"/>
@@ -61,10 +61,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1ui-Uo-QTK">
-                                <rect key="frame" x="40" y="117.99999999999999" width="251" height="32.333333333333329"/>
+                                <rect key="frame" x="40" y="117.99999999999999" width="334" height="32.333333333333329"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Gallery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqv-hj-bu4">
-                                        <rect key="frame" x="0.0" y="0.0" width="251" height="32.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="32.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -72,14 +72,13 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="W9e-5Y-goX">
-                                <rect key="frame" x="20" y="797" width="291" height="40"/>
+                                <rect key="frame" x="20" y="797" width="374" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoF-fL-7zy">
-                                        <rect key="frame" x="0.0" y="0.0" width="30.333333333333332" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="KRw-Id-E3K"/>
-                                            <constraint firstAttribute="width" constant="40" id="tu2-GH-t4R"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal">
@@ -91,7 +90,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Gb-DO-bDQ">
-                                        <rect key="frame" x="130.33333333333334" y="0.0" width="30.333333333333343" height="40"/>
+                                        <rect key="frame" x="158" y="0.0" width="58" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal">
                                             <imageReference key="image" image="tray.and.arrow.up.fill" catalog="system" symbolScale="large"/>
@@ -101,7 +100,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQH-kn-b1J">
-                                        <rect key="frame" x="260.66666666666669" y="0.0" width="30.333333333333314" height="40"/>
+                                        <rect key="frame" x="316" y="0.0" width="58" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal">

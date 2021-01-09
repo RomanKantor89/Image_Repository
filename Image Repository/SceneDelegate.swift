@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Image Repository
 //
-//  Created by Eden Giterman on 2021-01-06.
+//  Created by Roman Kantor on 2021-01-06.
 //
 
 import UIKit
@@ -10,7 +10,6 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.

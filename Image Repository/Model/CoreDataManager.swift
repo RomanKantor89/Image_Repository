@@ -2,7 +2,7 @@
 //  CoreDataManager.swift
 //  Image Repository
 //
-//  Created by Eden Giterman on 2021-01-06.
+//  Created by Roman Kantor on 2021-01-06.
 //
 
 import Foundation
@@ -22,8 +22,6 @@ class CoreDataManager {
         
         return result
     }()
-    
-    
     
     // add new image to favorites and save to Core Data
     func addImage(_ image: Data, _ allImages: [Image]) {
@@ -94,6 +92,4 @@ class CoreDataManager {
             }
         }
     }
-    
-    
 }

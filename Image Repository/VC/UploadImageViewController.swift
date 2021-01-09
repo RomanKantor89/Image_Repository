@@ -2,11 +2,12 @@
 //  UploadImageViewController.swift
 //  Image Repository
 //
-//  Created by Eden Giterman on 2021-01-06.
+//  Created by Roman Kantor on 2021-01-06.
 //
 
 import UIKit
 
+// protocol to add new image to the collection
 protocol addNewImageProtocol{
     func addNewImageDidFinish(_ image: Data)
 }
@@ -15,11 +16,11 @@ class UploadImageViewController: UIViewController {
 
     @IBOutlet weak var imagePreview: UIImageView!
     var delegate : addNewImageProtocol?
-    @IBOutlet weak var errorLabel: UILabel!
     var tempImage : UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // initialize image preview
         imagePreview.image = tempImage?.image ?? UIImage()
     }
     
@@ -32,15 +33,14 @@ class UploadImageViewController: UIViewController {
 
     // save the chosen photo to Core Data
     @IBAction func saveClicked(_ sender: Any) {
+        // fix the image orentation when taken with camera
         let fixedImageData = imagePreview.image!.fixOrientation()
-
         let imageData = fixedImageData!.pngData()
         showAction(imageData!)
     }
-    
 }
 
-// image extension to make
+// image extension to fix image orientation
 extension UIImage {
     func fixOrientation() -> UIImage? {
         if self.imageOrientation == UIImage.Orientation.up {
@@ -55,6 +55,7 @@ extension UIImage {
     }
 }
 
+// action sheet extension to confirm the save
 extension UploadImageViewController{
     
     func showAction(_ image: Data){
@@ -69,14 +70,13 @@ extension UploadImageViewController{
             
             // check if image was selected
             if image != UIImage.init(named: "imagePreview")?.pngData(){
+                // call the protocol method
                 self.delegate?.addNewImageDidFinish(image)
-               
                // go back to previous view
                self.navigationController?.popViewController(animated: true)
             }
             else{
-                self.errorLabel.text = "Please pick an image first."
-                self.errorLabel.alpha = 1
+                print("Something went wrong with saving the image")
             }
            
         }
@@ -86,5 +86,4 @@ extension UploadImageViewController{
         actionSheet.addAction(cancelAction)
         self.present(actionSheet, animated: true, completion: nil)
     }
-    
 }

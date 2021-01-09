@@ -2,11 +2,12 @@
 //  ShowImageViewController.swift
 //  Image Repository
 //
-//  Created by Eden Giterman on 2021-01-06.
+//  Created by Roman Kantor on 2021-01-06.
 //
 
 import UIKit
 
+// protocol to complete the deletion of the image
 protocol deleteImageProtocol{
     func deleteImageDidFinish(_ image: Image, _ index: IndexPath)
 }
@@ -38,7 +39,6 @@ class ShowImageViewController: UIViewController, UINavigationControllerDelegate 
     // delete icon button clicked
     @IBAction func deleteImage(_ sender: Any) {
         let imageToDelete = CoreDataManager.shared.frc.object(at: cellIndex ?? IndexPath(index: 0))
-                                                              
         showAction(imageToDelete)
     }
 }
@@ -59,6 +59,7 @@ extension ShowImageViewController {
          imageView.addGestureRecognizer(swipeRightGesture)
     }
     
+    // when swiped on the image left
     @objc func SwipeLeft(){
         let imgCount = CoreDataManager.shared.frc.fetchedObjects?.count ?? 0
         
@@ -71,7 +72,8 @@ extension ShowImageViewController {
     
         self.imageView.image = UIImage(data:CoreDataManager.shared.frc.object(at: cellIndex ?? IndexPath(index: 0)).imgSource! as Data)
     }
-       
+    
+    // when swiped on the image right
     @objc func SwipeRight(){
         if cellIndex?.item ?? 0 > 0{
             cellIndex?.item -= 1
@@ -97,13 +99,12 @@ extension ShowImageViewController{
         }
         
         let deleteAction = UIAlertAction(title: "Delete", style: .default) { (alert) in
-            
             self.delegate?.deleteImageDidFinish(image, self.cellIndex ?? IndexPath(index: 0))
-           
            // go back to previous view
            self.navigationController?.popViewController(animated: true)
         }
     
+        // add and execute the actions
         let actionSheet = UIAlertController(title: "Confirm", message: "Delete this image?", preferredStyle: .actionSheet)
         actionSheet.addAction(deleteAction)
         actionSheet.addAction(cancelAction)

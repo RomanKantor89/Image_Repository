@@ -2,7 +2,7 @@
 //  ImageRepository.swift
 //  Image Repository
 //
-//  Created by Eden Giterman on 2021-01-06.
+//  Created by Roman Kantor on 2021-01-06.
 //
 
 import UIKit
@@ -17,17 +17,15 @@ class ImageRepository: UIViewController, UICollectionViewDelegate, UICollectionV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // load images from core data
         getImages()
-        
-//        uploadPhotoButton.layer.cornerRadius = 5
-//        searchOnlineButton.layer.cornerRadius = 5
-//        uploadPhotoButton.backgroundColor = UIColor(red: 0.4, green: 0.2, blue: 0.9, alpha: 1)
     }
     
-    // delete image protocol implementation
+    // implement delete image protocol implementation
     func deleteImageDidFinish(_ image: Image, _ index : IndexPath) {
         CoreDataManager.shared.deleteImage(image)
         collectionView.deleteItems(at: [index])
+        // refresh collection
         getImages()
     }
     
@@ -35,8 +33,7 @@ class ImageRepository: UIViewController, UICollectionViewDelegate, UICollectionV
     func addNewImageDidFinish(_ image: Data) {
         let allImages = CoreDataManager.shared.frc.fetchedObjects ?? [Image]()
         CoreDataManager.shared.addImage(image, allImages)
-        
-        // refresh the collection
+        // refresh collection
         getImages()
     }
     
@@ -50,9 +47,7 @@ class ImageRepository: UIViewController, UICollectionViewDelegate, UICollectionV
         }
         self.collectionView.reloadData()
     }
-    
-    
-    
+        
     // number of collection cells
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -69,24 +64,21 @@ class ImageRepository: UIViewController, UICollectionViewDelegate, UICollectionV
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! imageCell
     
-        
         cell.imageView.image = UIImage(data:CoreDataManager.shared.frc.object(at: indexPath).imgSource! as Data)
         
         return cell
     }
     
-    
-    
     // prepare before moving to the next view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "previewImage" {
             let previewImageVC = segue.destination as! UploadImageViewController
+            
             previewImageVC.delegate = self
             previewImageVC.tempImage = self.tempImage
         }
         else if segue.identifier == "showImage"{
             let showImageVC = segue.destination as! ShowImageViewController
-            
             let cell = sender as! UICollectionViewCell
             let indexPath = self.collectionView!.indexPath(for: cell) ?? IndexPath(index: 0)
 
@@ -95,9 +87,9 @@ class ImageRepository: UIViewController, UICollectionViewDelegate, UICollectionV
         }
         else if segue.identifier == "searchOnline" {
             SearchService.shared.imageData = []
-            let onlinePreViewVC = segue.destination as! googleSearchViewController
+            let googleSearchVC = segue.destination as! googleSearchViewController
             
-            onlinePreViewVC.delegate = self
+            googleSearchVC.delegate = self
         }
     }
 
@@ -116,7 +108,7 @@ extension ImageRepository{
             }
         }
         else{
-            if UIImagePickerController.isSourceTypeAvailable(          .photoLibrary){
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
                 ipc.sourceType = .photoLibrary
             }
         }
@@ -134,7 +126,6 @@ extension ImageRepository{
            }
            dismiss(animated: true, completion: nil)
            previewUploadPhotoButton.sendActions(for: .touchUpInside)
-
     }
 
     // close photo picker if cancel clicked

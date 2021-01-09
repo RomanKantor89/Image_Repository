@@ -2,7 +2,7 @@
 //  ImagePreViewViewController.swift
 //  Image Repository
 //
-//  Created by Eden Giterman on 2021-01-07.
+//  Created by Roman Kantor on 2021-01-07.
 //
 
 
@@ -37,7 +37,6 @@ class ImagePreViewViewController: UIViewController {
         let imageData = imageView.image!.pngData()
         showAction(imageData!)
     }
-
 }
 
 // extension to handle all the gesture operations
@@ -56,6 +55,7 @@ extension ImagePreViewViewController {
          imageView.addGestureRecognizer(swipeRightGesture)
     }
     
+    // when swiped left on the image
     @objc func SwipeLeft(){
         let imgCount = SearchService.shared.imageData.count
 
@@ -68,7 +68,8 @@ extension ImagePreViewViewController {
     
         loadImage()
     }
-       
+    
+    // when swiped right on the image
     @objc func SwipeRight(){
         if cellIndex ?? 0 > 0{
             cellIndex! -= 1
@@ -94,9 +95,7 @@ extension ImagePreViewViewController{
         
         // save the image
         let saveAction = UIAlertAction(title: "Save", style: .default) { (alert) in
-            
-            self.delegate?.addNewImageDidFinish(image)
-           
+           self.delegate?.addNewImageDidFinish(image)
            // go back to previous view
            self.navigationController?.popViewController(animated: true)
         }
@@ -106,5 +105,4 @@ extension ImagePreViewViewController{
         actionSheet.addAction(cancelAction)
         self.present(actionSheet, animated: true, completion: nil)
     }
-    
 }
