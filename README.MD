@@ -9,10 +9,16 @@ In favorite and google search single image view modes - swipe gestures are enabl
 All the views should be responsive on different mobile devices as well as both portrait and landscape modes. 
 
 ### Running instractions
-Due to the privacy of the google API private keys I had to gitignore the .xcodeproj file and therefore to run this application you would have to 
-create a new Xcode project and copy my files into that project as well as provide your own google private API_KEY and Custom SearchID - CX in the SearchService.swift.  
-Possibly may require to do some additional setup of Core Data.
+Due to the privacy of the google API private keys I had to gitignore the info.plist file and therefore to run this application you would have to 
+provide your own info.plist which will include your own Google Custome Search API_KEY and Google CX Id. Make sure the variavble names for those properties match the
+names when retrieving those variables in SearchService.swift
+Another additional property in my Info.plist was the requirement to ask user permision to use device camera when running this simulation on actual Iphone device 
+and not a simulator.
 
 ### Appetize Demo
-Appetize demo is limited because we cannot see the functionality of the Core Data.
-Link:
+Appetize demo is limited because we cannot see the functionality of the Core Data. The images will get saved to favorites, but will not remain there after refresh.
+Also, only gallery of the device will be accessed but not the camera.
+Link: https://appetize.io/app/p175d1hzq6tgb73dk7937p1u9g?device=iphone11promax&scale=50&orientation=portrait&osVersion=14.1
+
+
+### Video Demo
